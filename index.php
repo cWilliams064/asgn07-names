@@ -37,13 +37,17 @@ foreach($fullNames as $fullName) {
 
 // Get valid names
 for($i = 0; $i < sizeof($fullNames); $i++) {
-    // jam the first and last name toghether without a comma, then test for alpha-only characters
+    // jam the first and last name together without a comma, then test for alpha-only characters
     if(ctype_alpha($lastNames[$i].$firstNames[$i])) {
         $validFirstNames[$i] = $firstNames[$i];
         $validLastNames[$i] = $lastNames[$i];
         $validFullNames[$i] = $validLastNames[$i] . ", " . $validFirstNames[$i];
     }
 }
+
+$commonLastNames = array_count_values($validLastNames);
+$commonFirstNames = array_count_values($validFirstNames);
+
 
 // ~~~~~~~~~~~~ Display results ~~~~~~~~~~~~ //
 
@@ -69,16 +73,49 @@ echo '<h2>Unique Names</h2>';
 $uniqueValidNames = (array_unique($validFullNames));
 echo ("<p>There are " . sizeof($uniqueValidNames) . " Unique names</p>");
 echo '<ul style="list-style-type:none">';    
-    foreach($uniqueValidNames as $uniqueValidNames) {
-        echo "<li>$uniqueValidNames</li>";
+    foreach($uniqueValidNames as $uniqueValidName) {
+        echo "<li>$uniqueValidName</li>";
     }
+echo "</ul>";
+
+echo '<h2>Unique Last Names</h2>';
+$uniqueLastNames = (array_unique($validLastNames));
+echo ("<p>There are " . sizeof($uniqueLastNames) . " Unique last names</p>");
+echo '<ul style="list-style-type:none">';    
+    foreach($uniqueLastNames as $uniqueLastName) {
+        echo "<li>$uniqueLastName</li>";
+    }
+echo "</ul>";
+
+echo '<h2>Unique First Names</h2>';
+$uniqueFirstNames = (array_unique($validFirstNames));
+echo ("<p>There are " . sizeof($uniqueFirstNames) . " Unique first names</p>");
+echo '<ul style="list-style-type:none">';    
+    foreach($uniqueFirstNames as $uniqueFirstName) {
+        echo "<li>$uniqueFirstName</li>";
+    }
+echo "</ul>";
+
+echo '<h2>Most Common Last Names</h2>';
+echo '<ul style="list-style-type:none">';
+    foreach($commonLastNames as $commonLastName => $count) {
+      if($count > 1) {
+        echo "<li>$commonLastName</li>";
+        echo "<li>Occurrences: $count";
+        echo "<br></br>";
+      }
+    }
+echo "</ul>";
+
+echo '<h2>Most Common First Names</h2>';
+echo '<ul style="list-style-type:none">'; 
+    foreach($commonFirstNames as $commonFirstName => $count) {
+      if($count > 1) {
+        echo "<li>$commonFirstName</li>";
+        echo "<li>Occurrences: $count";
+        echo "<br></br>";
+      }
+    }
+echo "</ul>";
 
 ?>
-
-
-
-
-
-
-
-
