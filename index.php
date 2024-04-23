@@ -48,7 +48,6 @@ for($i = 0; $i < sizeof($fullNames); $i++) {
 $commonLastNames = array_count_values($validLastNames);
 $commonFirstNames = array_count_values($validFirstNames);
 
-
 // ~~~~~~~~~~~~ Display results ~~~~~~~~~~~~ //
 
 echo '<h1>Names - Results</h1>';
@@ -101,7 +100,7 @@ echo '<ul style="list-style-type:none">';
     foreach($commonLastNames as $commonLastName => $count) {
       if($count > 1) {
         echo "<li>$commonLastName</li>";
-        echo "<li>Occurrences: $count";
+        echo "<li>Occurrences: $count</li>";
         echo "<br></br>";
       }
     }
@@ -112,7 +111,7 @@ echo '<ul style="list-style-type:none">';
     foreach($commonFirstNames as $commonFirstName => $count) {
       if($count > 1) {
         echo "<li>$commonFirstName</li>";
-        echo "<li>Occurrences: $count";
+        echo "<li>Occurrences: $count</li>";
         echo "<br></br>";
       }
     }
